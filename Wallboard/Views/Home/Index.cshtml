@@ -1,0 +1,40 @@
+﻿@using Wallboard.Models
+@model WallboardModel
+@{
+    ViewBag.Title = "Wallboard";
+}
+
+<div id="general-info">
+    <div id="clock"><object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="240px" height="240px">
+                        <param name="movie" value="http://newsletter.matt.org/modules/DashboardClockWorld.swf?tzparam=' + tzparam__MODULE_ID__ + '&gmtmins=' + gmtmins__MODULE_ID__ + '&dtsaving=Yes&city=Santa%20Fe" />
+		                <param name="quality" value="high" />
+		                <embed src="http://newsletter.matt.org/modules/DashboardClockWorld.swf?tzparam=-7&gmtmins=30&dtsaving=Yes&city=Santa%20Fe" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="240" height="240"></embed></object></div>
+    <div id="weather" class="shadow"><script src='http://netweather.accuweather.com/adcbin/netweather_v2/netweatherV2ex.asp?partner=netweather&tStyle=normal&logo=1&zipcode=58102&lang=eng&size=9&theme=clouds&metric=0&target=_self'></script></div>
+</div>
+<div class="statuses">
+<h2>Latest Repository Commits</h2>
+<ul>
+    @foreach (var item in Model.RepositoryCommits)
+    {
+        <li>@item.Authors[0].Email - @item.Title.Text</li>
+    }
+</ul>
+</div>
+<div class="statuses">
+<h2>Latest Build Statuses</h2>
+<ul>
+    @foreach (var item in Model.BuildStatuses)
+    {
+        <li class="@item.StatusClass">@item.BuildStatus.Title.Text</li>
+    }
+</ul>
+</div>
+<div class="statuses">
+<h2>Latest Open Jira Issues</h2>
+<ul>
+    @foreach (var item in Model.JiraIssues)
+    {
+        <li>@item.Title.Text</li>
+    }
+</ul>
+</div>
