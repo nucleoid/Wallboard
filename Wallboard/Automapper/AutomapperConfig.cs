@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel.Syndication;
 using AutoMapper;
+using DDay.iCal;
 using Wallboard.Models;
 
 namespace Wallboard.Automapper
@@ -12,10 +13,18 @@ namespace Wallboard.Automapper
 
             Mapper.Initialize(map =>
             {
-                map.CreateMap<SyndicationItem, BuildStatusModel>()
+                map.CreateMap<string, BuildStatusModel>()
                  .ForMember(d => d.BuildStatus, o => o.MapFrom(s => s))
-                 .ForMember(d => d.StatusClass, o => o.MapFrom(s => s.Title.Text.ToLowerInvariant().Contains("failed") ? "failure" : "success"));
+                 .ForMember(d => d.StatusClass, o => o.MapFrom(s => s.ToLowerInvariant().Contains("failed") ? "failure" : "success"));
+                map.CreateMap<IEvent, EventModel>()
+                    .ForMember(d => d.Event, o => o.MapFrom(s => s))
+                    .ForMember(d => d.Duration, o => o.MapFrom(s => s.IsAllDay ? "ALL DAY" : Duration(s)));
             });
+        }
+
+        private static string Duration(IEvent ievent)
+        {
+            return string.Format("{0} - {1}", ievent.Start.ToString("hh:mmtt"), ievent.End.ToString("hh:mmtt"));
         }
     }
 }

@@ -45,6 +45,9 @@
     <Reference Include="AutoMapper">
       <HintPath>..\packages\AutoMapper.2.0.0\lib\net40-client\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="DDay.iCal">
+      <HintPath>..\packages\DDay.iCal.1.0.1\lib\DDay.iCal.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework">
       <HintPath>..\packages\EntityFramework.4.1.10331.0\lib\EntityFramework.dll</HintPath>
     </Reference>
@@ -52,8 +55,14 @@
       <HintPath>..\packages\LoggingServer.Commin.1.0\LoggingServer.Common.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.0.3\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NLog, Version=2.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
       <HintPath>..\packages\NLog.2.0.0.2000\lib\net40\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.102.3\lib\net35\RestSharp.dll</HintPath>
     </Reference>
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.ServiceModel" />
@@ -89,12 +98,158 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\BuildStatusModel.cs" />
+    <Compile Include="Models\EventModel.cs" />
     <Compile Include="Models\WallboardModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Scripts\proxy\asp\WeatherProxy.aspx.cs">
+      <DependentUpon>WeatherProxy.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Scripts\proxy\asp\WeatherProxy.aspx.designer.cs">
+      <DependentUpon>WeatherProxy.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Tasks\BambooTasks.cs" />
+    <Compile Include="Tasks\CalendarTasks.cs" />
+    <Compile Include="Tasks\IBambooTasks.cs" />
+    <Compile Include="Tasks\ICalendarTasks.cs" />
     <Compile Include="Tasks\IRssTasks.cs" />
     <Compile Include="Tasks\RssTasks.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\jquery.jdigiclock.css" />
+    <Content Include="Content\images\background.png" />
+    <Content Include="Content\images\background_forecast.png" />
+    <Content Include="Content\images\clock\0-1.png" />
+    <Content Include="Content\images\clock\0-2.png" />
+    <Content Include="Content\images\clock\0-3.png" />
+    <Content Include="Content\images\clock\0.png" />
+    <Content Include="Content\images\clock\001-1.png" />
+    <Content Include="Content\images\clock\001-2.png" />
+    <Content Include="Content\images\clock\001-3.png" />
+    <Content Include="Content\images\clock\01-1.png" />
+    <Content Include="Content\images\clock\01-2.png" />
+    <Content Include="Content\images\clock\01-3.png" />
+    <Content Include="Content\images\clock\1-1.png" />
+    <Content Include="Content\images\clock\1-2.png" />
+    <Content Include="Content\images\clock\1-3.png" />
+    <Content Include="Content\images\clock\1.png" />
+    <Content Include="Content\images\clock\11-1.png" />
+    <Content Include="Content\images\clock\11-2.png" />
+    <Content Include="Content\images\clock\11-3.png" />
+    <Content Include="Content\images\clock\111-1.png" />
+    <Content Include="Content\images\clock\111-2.png" />
+    <Content Include="Content\images\clock\111-3.png" />
+    <Content Include="Content\images\clock\2-1.png" />
+    <Content Include="Content\images\clock\2-2.png" />
+    <Content Include="Content\images\clock\2-3.png" />
+    <Content Include="Content\images\clock\2.png" />
+    <Content Include="Content\images\clock\21-1.png" />
+    <Content Include="Content\images\clock\21-2.png" />
+    <Content Include="Content\images\clock\21-3.png" />
+    <Content Include="Content\images\clock\211-1.png" />
+    <Content Include="Content\images\clock\211-2.png" />
+    <Content Include="Content\images\clock\211-3.png" />
+    <Content Include="Content\images\clock\3-1.png" />
+    <Content Include="Content\images\clock\3-2.png" />
+    <Content Include="Content\images\clock\3-3.png" />
+    <Content Include="Content\images\clock\3.png" />
+    <Content Include="Content\images\clock\31-1.png" />
+    <Content Include="Content\images\clock\31-2.png" />
+    <Content Include="Content\images\clock\31-3.png" />
+    <Content Include="Content\images\clock\311-1.png" />
+    <Content Include="Content\images\clock\311-2.png" />
+    <Content Include="Content\images\clock\311-3.png" />
+    <Content Include="Content\images\clock\4-1.png" />
+    <Content Include="Content\images\clock\4-2.png" />
+    <Content Include="Content\images\clock\4-3.png" />
+    <Content Include="Content\images\clock\4.png" />
+    <Content Include="Content\images\clock\41-1.png" />
+    <Content Include="Content\images\clock\41-2.png" />
+    <Content Include="Content\images\clock\41-3.png" />
+    <Content Include="Content\images\clock\5-1.png" />
+    <Content Include="Content\images\clock\5-2.png" />
+    <Content Include="Content\images\clock\5-3.png" />
+    <Content Include="Content\images\clock\5.png" />
+    <Content Include="Content\images\clock\51-1.png" />
+    <Content Include="Content\images\clock\51-2.png" />
+    <Content Include="Content\images\clock\51-3.png" />
+    <Content Include="Content\images\clock\511-1.png" />
+    <Content Include="Content\images\clock\511-2.png" />
+    <Content Include="Content\images\clock\511-3.png" />
+    <Content Include="Content\images\clock\6-1.png" />
+    <Content Include="Content\images\clock\6-2.png" />
+    <Content Include="Content\images\clock\6-3.png" />
+    <Content Include="Content\images\clock\6.png" />
+    <Content Include="Content\images\clock\7-1.png" />
+    <Content Include="Content\images\clock\7-2.png" />
+    <Content Include="Content\images\clock\7-3.png" />
+    <Content Include="Content\images\clock\7.png" />
+    <Content Include="Content\images\clock\8-1.png" />
+    <Content Include="Content\images\clock\8-2.png" />
+    <Content Include="Content\images\clock\8-3.png" />
+    <Content Include="Content\images\clock\8.png" />
+    <Content Include="Content\images\clock\9-1.png" />
+    <Content Include="Content\images\clock\9-2.png" />
+    <Content Include="Content\images\clock\9-3.png" />
+    <Content Include="Content\images\clock\9.png" />
+    <Content Include="Content\images\clock\am.png" />
+    <Content Include="Content\images\clock\apm.png" />
+    <Content Include="Content\images\clock\clockbg-blank.png" />
+    <Content Include="Content\images\clock\clockbg1.png" />
+    <Content Include="Content\images\clock\clockbg2.png" />
+    <Content Include="Content\images\clock\clockbg3.png" />
+    <Content Include="Content\images\clock\clockbg4.png" />
+    <Content Include="Content\images\clock\clockbg5.png" />
+    <Content Include="Content\images\clock\clockbg6.png" />
+    <Content Include="Content\images\clock\pm.png" />
+    <Content Include="Content\images\htc_hero_wallpaper_01.jpg" />
+    <Content Include="Content\images\htc_hero_wallpaper_02.jpg" />
+    <Content Include="Content\images\icon_left.png" />
+    <Content Include="Content\images\icon_right.png" />
+    <Content Include="Content\images\refresh_01.png" />
+    <Content Include="Content\images\weather\1.png" />
+    <Content Include="Content\images\weather\11.png" />
+    <Content Include="Content\images\weather\12.png" />
+    <Content Include="Content\images\weather\13.png" />
+    <Content Include="Content\images\weather\14.png" />
+    <Content Include="Content\images\weather\15.png" />
+    <Content Include="Content\images\weather\16.png" />
+    <Content Include="Content\images\weather\17.png" />
+    <Content Include="Content\images\weather\18.png" />
+    <Content Include="Content\images\weather\19.png" />
+    <Content Include="Content\images\weather\2.png" />
+    <Content Include="Content\images\weather\20.png" />
+    <Content Include="Content\images\weather\21.png" />
+    <Content Include="Content\images\weather\22.png" />
+    <Content Include="Content\images\weather\23.png" />
+    <Content Include="Content\images\weather\24.png" />
+    <Content Include="Content\images\weather\25.png" />
+    <Content Include="Content\images\weather\26.png" />
+    <Content Include="Content\images\weather\27.png" />
+    <Content Include="Content\images\weather\29.png" />
+    <Content Include="Content\images\weather\3.png" />
+    <Content Include="Content\images\weather\30.png" />
+    <Content Include="Content\images\weather\31.png" />
+    <Content Include="Content\images\weather\32.png" />
+    <Content Include="Content\images\weather\33.png" />
+    <Content Include="Content\images\weather\34.png" />
+    <Content Include="Content\images\weather\35.png" />
+    <Content Include="Content\images\weather\36.png" />
+    <Content Include="Content\images\weather\37.png" />
+    <Content Include="Content\images\weather\38.png" />
+    <Content Include="Content\images\weather\39.png" />
+    <Content Include="Content\images\weather\4.png" />
+    <Content Include="Content\images\weather\40.png" />
+    <Content Include="Content\images\weather\41.png" />
+    <Content Include="Content\images\weather\42.png" />
+    <Content Include="Content\images\weather\43.png" />
+    <Content Include="Content\images\weather\44.png" />
+    <Content Include="Content\images\weather\5.png" />
+    <Content Include="Content\images\weather\6.png" />
+    <Content Include="Content\images\weather\7.png" />
+    <Content Include="Content\images\weather\8.png" />
+    <Content Include="Content\images\weather\blank.png" />
+    <Content Include="Content\images\weather\na.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -128,11 +283,15 @@
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.jdigiclock.js" />
+    <Content Include="Scripts\jquery.newscroller.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\modernizr-1.7.js" />
     <Content Include="Scripts\modernizr-1.7.min.js" />
+    <Content Include="Scripts\proxy\asp\README.txt" />
+    <Content Include="Scripts\proxy\asp\WeatherProxy.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -140,7 +299,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Content\Site.css" />
+    <Content Include="Content\css\Site.css" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -162,6 +321,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\proxy\php\proxy.php" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

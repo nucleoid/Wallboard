@@ -6,6 +6,7 @@ using System.Web.Routing;
 using Autofac.Integration.Mvc;
 using LoggingServer.Common;
 using NLog;
+using RestSharp;
 using Wallboard.Autofac;
 using Wallboard.Automapper;
 
@@ -47,7 +48,7 @@ namespace Wallboard
         private void BootStrap()
         {
             AutomapperConfig.Setup();
-
+            DependencyContainer.RegisterInstance(new RestClient() as IRestClient);
             DependencyContainer.Register(new TaskModule(), new MvcModule(Assembly.GetExecutingAssembly()));
             DependencyContainer.BuildContainer();
 
