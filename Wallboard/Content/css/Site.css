@@ -68,8 +68,9 @@ h5, h6 {
 
 fieldset {
     border: hidden;
-    border-left: solid #606060 1px;
-    width: 500px;
+    border-right: solid #606060 1px;
+    width: 640px;
+    max-height: 340px;
 }
 
 legend {
@@ -79,7 +80,7 @@ legend {
     border-right: 1px solid #2b2b2b;
     border-bottom: 1px solid #2b2b2b;
     width: 100%;
-    max-height: 340px;
+    height: 1.2em;
 }
 
 legend span.ui-icon {
@@ -143,3 +144,11 @@ li.failure {
 }
 
 .ui-icon { width: 16px; height: 16px; background-image: url(/Content/themes/base/images/ui-icons_888888_256x240.png); }
+
+ul.twitter-feed {
+    border: dotted #fff 1px;
+}
+
+ul.twitter-feed li {
+    
+}

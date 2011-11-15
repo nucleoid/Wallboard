@@ -116,6 +116,7 @@
     <Compile Include="Tasks\RssTasks.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\dnews.css" />
     <Content Include="Content\css\jquery.jdigiclock.css" />
     <Content Include="Content\images\background.png" />
     <Content Include="Content\images\background_forecast.png" />
@@ -202,6 +203,17 @@
     <Content Include="Content\images\clock\clockbg5.png" />
     <Content Include="Content\images\clock\clockbg6.png" />
     <Content Include="Content\images\clock\pm.png" />
+    <Content Include="Content\images\dnews\bg.jpg" />
+    <Content Include="Content\images\dnews\control-bar.png" />
+    <Content Include="Content\images\dnews\cor.png" />
+    <Content Include="Content\images\dnews\gaindi.png" />
+    <Content Include="Content\images\dnews\loading.gif" />
+    <Content Include="Content\images\dnews\next.png" />
+    <Content Include="Content\images\dnews\pause.png" />
+    <Content Include="Content\images\dnews\play.png" />
+    <Content Include="Content\images\dnews\prev.png" />
+    <Content Include="Content\images\dnews\tip.png" />
+    <Content Include="Content\images\dnews\title-news.png" />
     <Content Include="Content\images\htc_hero_wallpaper_01.jpg" />
     <Content Include="Content\images\htc_hero_wallpaper_02.jpg" />
     <Content Include="Content\images\icon_left.png" />
@@ -277,14 +289,15 @@
     <Content Include="Content\themes\base\jquery.ui.slider.css" />
     <Content Include="Content\themes\base\jquery.ui.tabs.css" />
     <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\dnews.js" />
     <Content Include="Scripts\jquery-1.5.1-vsdoc.js" />
     <Content Include="Scripts\jquery-1.5.1.js" />
     <Content Include="Scripts\jquery-1.5.1.min.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
     <Content Include="Scripts\jquery.jdigiclock.js" />
-    <Content Include="Scripts\jquery.newscroller.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

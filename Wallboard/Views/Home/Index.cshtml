@@ -21,13 +21,13 @@
         }
     </div>
 </fieldset>
-<fieldset class="clear-left"><legend><span class="float-left">NEXT HOLIDAY</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+<fieldset class="clear-left float-left"><legend><span class="float-left">NEXT HOLIDAY</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
     <div id="holiday">
         @Model.Holiday.Start.ToString("ddd, MMM, d")<span class="holiday-summary">@Model.Holiday.Summary</span>
     </div>
 </fieldset>
 
-<fieldset class="clear-left"><legend><span class="float-left">Bamboo Build Statuses</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+<fieldset class="float-left"><legend><span class="float-left">Bamboo Build Statuses</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
 <ul>
     @foreach (var item in Model.BuildStatuses)
     {
@@ -35,3 +35,47 @@
     }
 </ul>
 </fieldset>
+
+<fieldset class="clear-left float-left"><legend><span class="float-left">Google News - Top Stories &amp; Sci/Tech</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+    <div id="dnews" class="news-wrapper">
+        <div class="news"></div>
+    </div>
+</fieldset>
+
+<fieldset class="float-left"><legend><span class="float-left">Twitter - @@sycorr &amp; @@mpool &amp; @@jneuharth &amp; @@nodakpaul</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+    <div id="twitter-statuses" class="news-wrapper twitter-style">
+        <div class="news"></div>
+    </div>
+</fieldset>
+
+<script type="text/javascript" >
+    $(document).ready(function () {
+        $('#digiclock').jdigiclock({
+            clockImagesPath: "@Url.Content("~/Content/images/clock/")",
+            weatherImagesPath: "@Url.Content("~/Content/images/weather/")",
+            am_pm: true,
+            weatherLocationCode: "NAM|US|ND|FARGO",
+            weatherMetric: "F",
+            weatherUpdate: 5,
+            proxyType: "asp"
+        });
+        
+        $('#dnews').dnews({
+            feedurl: 'http://pipes.yahoo.com/pipes/pipe.run?_id=358eea8a3697dd76e57056dca6947d80&_render=rss',
+            entries: 20,
+            switchinterval: 6000,
+            controls: false,
+            showdetail: false, 
+            controlsalwaysvisible: false
+        });
+        $('#twitter-statuses').dnews({
+            feedurl: 'http://pipes.yahoo.com/pipes/pipe.run?_id=65413c812ef1ffbc4009fb3b91cc0164&_render=rss',
+            entries: 20,
+            switchinterval: 6000,
+            controls: false,
+            showdetail: false, 
+            controlsalwaysvisible: false,
+            twitterimages: true
+        });
+    });
+</script>
