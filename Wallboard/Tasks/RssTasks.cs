@@ -7,7 +7,7 @@ namespace Wallboard.Tasks
 {
     public class RssTasks : IRssTasks
     {
-        public IEnumerable<SyndicationItem> LoadItems(params XmlReader[] readers)
+        public IEnumerable<SyndicationItem> LoadAndSortItems(params XmlReader[] readers)
         {
             var items = new List<SyndicationItem>();
             foreach (var xmlReader in readers)

@@ -6,6 +6,6 @@ namespace Wallboard.Tasks
 {
     public interface IRssTasks
     {
-        IEnumerable<SyndicationItem> LoadItems(params XmlReader[] readers);
+        IEnumerable<SyndicationItem> LoadAndSortItems(params XmlReader[] readers);
     }
 }

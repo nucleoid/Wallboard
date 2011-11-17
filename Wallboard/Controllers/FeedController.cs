@@ -31,15 +31,17 @@ namespace Wallboard.Controllers
 
         public ActionResult Rss()
         {
-            var newsItems = _rssTasks.LoadItems(XmlReader.Create(ConfigurationManager.AppSettings["topNewsUrl"]), 
-                XmlReader.Create(ConfigurationManager.AppSettings["sciTechNewsUrl"]));
+            var rssFeeds = ConfigurationManager.AppSettings["newsUrls"].Split('|');
+            var feedReaders = rssFeeds.Select(XmlReader.Create).ToArray();
+            var newsItems = _rssTasks.LoadAndSortItems(feedReaders);
             var newsTitles = newsItems.Select(x => x.Title.Text.Length > 100 ? string.Format("{0} ...", x.Title.Text.Substring(0, 100)) : x.Title.Text);
             return PartialView(newsTitles);
         }
 
-        public ActionResult Twitter(int count, string[] usernames)
+        public ActionResult Twitter()
         {
-            var twitterItems = _twitterTasks.FilterAndSortTweets(count, usernames);
+            var twitterProfiles = ConfigurationManager.AppSettings["twitterscreennames"].Split('|');
+            var twitterItems = _twitterTasks.FilterAndSortTweets(20, twitterProfiles);
             var twitterStatuses = twitterItems.Select(CombineProfileAndTweet);
             return PartialView("Rss", twitterStatuses);
         }

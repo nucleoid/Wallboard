@@ -20,13 +20,13 @@ namespace Wallboard.Tests.Tasks
         }
 
         [Test]
-        public void LoadItems_Reader_Sorts_And_Excludes_Duplicate_Items()
+        public void LoadAndSortItems_Reader_Sorts_And_Excludes_Duplicate_Items()
         {
             //Arrange
             var reader = XmlReader.Create(new StringReader(TestRssFeed));
 
             //Act
-            var items = _tasks.LoadItems(reader).ToList();
+            var items = _tasks.LoadAndSortItems(reader).ToList();
 
             Assert.AreEqual(2, items.Count);
             Assert.Sorted(items, SortOrder.Decreasing, new CompareItems());
@@ -35,14 +35,14 @@ namespace Wallboard.Tests.Tasks
         }
 
         [Test]
-        public void LoadItems_Reader_Loads_Multiple_Feeds()
+        public void LoadAndSortItems_Reader_Loads_Multiple_Feeds()
         {
             //Arrange
             var reader = XmlReader.Create(new StringReader(TestRssFeed));
             var reader2 = XmlReader.Create(new StringReader(TestRssFeed2));
 
             //Act
-            var items = _tasks.LoadItems(reader, reader2);
+            var items = _tasks.LoadAndSortItems(reader, reader2);
 
             Assert.AreEqual(4, items.Count());
             Assert.Sorted(items, SortOrder.Decreasing, new CompareItems());

@@ -1,13 +1,11 @@
 ﻿@model IEnumerable<Wallboard.Models.EventModel>
-<div id="events">
-    @foreach (var group in Model.GroupBy(x => x.Event.Start.Date))
+@foreach (var group in Model.GroupBy(x => x.Event.Start.Date))
+{
+    <text>
+    <h4>@group.FirstOrDefault().Event.Start.ToString("ddd, MMM d, yyyy")</h4>
+    @foreach (var item in group)
     {
-        <text>
-        <h4>@group.FirstOrDefault().Event.Start.ToString("ddd, MMM d, yyyy")</h4>
-        @foreach (var item in group)
-        {
-            <span class="time">@item.Duration</span><span class="event-description">@item.Event.Summary</span>
-        }
-        </text>
+        <span class="time">@item.Duration</span><span class="event-description">@item.Event.Summary</span>
     }
-</div>
+    </text>
+}
