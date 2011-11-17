@@ -1,6 +1,4 @@
-﻿@using Wallboard.Models
-@model WallboardModel
-@{
+﻿@{
     ViewBag.Title = "Wallboard";
 }
 
@@ -8,44 +6,26 @@
     <div id="digiclock"></div>
 </fieldset>
 <fieldset class="float-left"><legend><span class="float-left">CALENDAR</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
-    <div id="events">
-        @foreach (var group in Model.Events.GroupBy(x => x.Event.Start.Date))
-        {
-            <text>
-            <h4>@group.FirstOrDefault().Event.Start.ToString("ddd, MMM d, yyyy")</h4>
-            @foreach (var item in group)
-            {
-                <span class="time">@item.Duration</span><span class="event-description">@item.Event.Summary</span>
-            }
-            </text>
-        }
-    </div>
+    @Html.Raw(Html.Action("Calendar", "Feed").ToString())
 </fieldset>
 <fieldset class="clear-left float-left"><legend><span class="float-left">NEXT HOLIDAY</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
-    <div id="holiday">
-        @Model.Holiday.Start.ToString("ddd, MMM, d")<span class="holiday-summary">@Model.Holiday.Summary</span>
-    </div>
+    @Html.Raw(Html.Action("NextHoliday", "Feed").ToString())
 </fieldset>
 
 <fieldset class="float-left"><legend><span class="float-left">Bamboo Build Statuses</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
-<ul>
-    @foreach (var item in Model.BuildStatuses)
-    {
-        <li class="@item.StatusClass">@Html.Raw(item.BuildStatus)</li>
-    }
-</ul>
+    @Html.Raw(Html.Action("BuildStatuses", "Feed").ToString())
 </fieldset>
 
-<fieldset class="clear-left float-left"><legend><span class="float-left">Google News - Top Stories &amp; Sci/Tech</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
-    <div id="dnews" class="news-wrapper">
-        <div class="news"></div>
-    </div>
+<fieldset class="clear-left float-left"><legend><span class="float-left">Jira Projects</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+    @Html.Raw(Html.Action("JiraProjects", "Feed").ToString())
 </fieldset>
 
-<fieldset class="float-left"><legend><span class="float-left">Twitter - @@sycorr &amp; @@mpool &amp; @@jneuharth &amp; @@nodakpaul</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
-    <div id="twitter-statuses" class="news-wrapper twitter-style">
-        <div class="news"></div>
-    </div>
+<fieldset class="float-left"><legend><span class="float-left">Google News - Top Stories &amp; Sci/Tech</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+    @Html.Raw(Html.Action("Rss", "Feed").ToString())
+</fieldset>
+
+<fieldset class="clear-left float-left"><legend><span class="float-left">Twitter - @@sycorr &amp; @@mpool &amp; @@jneuharth &amp; @@nodakpaul</span> <span class="ui-icon ui-icon-triangle-1-s"></span></legend>
+    @Html.Raw(Html.Action("Twitter", "Feed", new { count = "20", usernames = new[] {"sycorr", "mpool", "jneuharth", "nodakpaul"} }).ToString())
 </fieldset>
 
 <script type="text/javascript" >
@@ -58,24 +38,6 @@
             weatherMetric: "F",
             weatherUpdate: 5,
             proxyType: "asp"
-        });
-        
-        $('#dnews').dnews({
-            feedurl: 'http://pipes.yahoo.com/pipes/pipe.run?_id=358eea8a3697dd76e57056dca6947d80&_render=rss',
-            entries: 20,
-            switchinterval: 6000,
-            controls: false,
-            showdetail: false, 
-            controlsalwaysvisible: false
-        });
-        $('#twitter-statuses').dnews({
-            feedurl: 'http://pipes.yahoo.com/pipes/pipe.run?_id=65413c812ef1ffbc4009fb3b91cc0164&_render=rss',
-            entries: 20,
-            switchinterval: 6000,
-            controls: false,
-            showdetail: false, 
-            controlsalwaysvisible: false,
-            twitterimages: true
         });
     });
 </script>

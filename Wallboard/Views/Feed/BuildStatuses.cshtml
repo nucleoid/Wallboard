@@ -1,0 +1,7 @@
+﻿@model IEnumerable<Wallboard.Models.BuildStatusModel>
+<ul>
+    @foreach (var item in Model)
+    {
+        <li class="@item.StatusClass">@Html.Raw(item.BuildStatus)</li>
+    }
+</ul>

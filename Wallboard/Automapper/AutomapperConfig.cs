@@ -1,5 +1,4 @@
-﻿using System.ServiceModel.Syndication;
-using AutoMapper;
+﻿using AutoMapper;
 using DDay.iCal;
 using Wallboard.Models;
 

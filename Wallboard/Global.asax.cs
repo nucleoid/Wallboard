@@ -24,6 +24,11 @@ namespace Wallboard
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                "Feeds", // Route name
+                "{controller}/{action}/{key}", // URL with parameters
+                new { controller = "Home", action = "Index" } // Parameter defaults
+            );
+            routes.MapRoute(
                 "Default", // Route name
                 "{controller}/{action}/{id}", // URL with parameters
                 new { controller = "Home", action = "Index", id = UrlParameter.Optional } // Parameter defaults
@@ -48,7 +53,6 @@ namespace Wallboard
         private void BootStrap()
         {
             AutomapperConfig.Setup();
-            DependencyContainer.RegisterInstance(new RestClient() as IRestClient);
             DependencyContainer.Register(new TaskModule(), new MvcModule(Assembly.GetExecutingAssembly()));
             DependencyContainer.BuildContainer();
 

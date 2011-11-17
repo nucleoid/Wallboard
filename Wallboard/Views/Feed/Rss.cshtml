@@ -1,0 +1,8 @@
+﻿@model IEnumerable<string>
+
+<ul>
+@foreach (var title in Model)
+{
+    <li>@Html.Raw(title)</li>    
+}
+</ul>
