@@ -6,7 +6,7 @@
     <div id="digiclock" class="wbelement-content"></div>
 </div>
 <div class="float-left wbelement no-border"><div class="wbtitle"><span class="float-left">CALENDAR</span> <span class="ui-icon ui-icon-triangle-1-s"></span></div>
-    <div id="events" class="wbelement-content">
+    <div id="events" class="wbelement-content no-border">
     </div>
 </div>
 <div class="clear-left float-left wbelement"><div class="wbtitle"><span class="float-left">NEXT HOLIDAY</span> <span class="ui-icon ui-icon-triangle-1-s"></span></div>
@@ -25,7 +25,7 @@
 </div>
 
 <div class="float-left wbelement wbelement-bottom"><div class="wbtitle"><span class="float-left">News</span> <span class="ui-icon ui-icon-triangle-1-s"></span></div>
-    <div class="wbelement-content">
+    <div class="wbelement-content no-border">
         <ul id="news-feeds">
             @Html.Raw(Html.Action("Rss", "Feed").ToString())
         </ul>

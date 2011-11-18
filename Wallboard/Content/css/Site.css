@@ -54,19 +54,19 @@ h5, h6 {
 ----------------------------------------------------------*/
 
 div.wbelement {
-    border-right: solid #606060 1px;
     width: 49.9%;
     max-height: 340px;
     padding: 0;
     margin: 0;
 }
 
-div.wbelement.no-border {
-    border: none;
-}
-
 .wbelement-content {
     padding-left: 10px;
+    border-right: solid #606060 1px;
+}
+
+.no-border {
+    border: none;
 }
 
 .wbelement-content-full li {
@@ -81,6 +81,14 @@ div.wbelement.no-border {
     position: absolute;
     bottom: 0;
     height: 100%;
+}
+
+.absolute-bottom .wbelement-content {
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 98.4%;
+    border-right: solid #606060 1px;
 }
 
 div.wbtitle {
@@ -158,6 +166,6 @@ li.failure {
 
 .ui-icon { width: 16px; height: 16px; background-image: url(/Content/themes/base/images/ui-icons_888888_256x240.png); }
 
-ul.twitter-feed {
-    border: dotted #fff 1px;
+ul#twitter-feeds {
+    padding-bottom: 50px;
 }
