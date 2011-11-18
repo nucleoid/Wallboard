@@ -23,7 +23,7 @@ namespace Wallboard.Automapper
 
         private static string Duration(IEvent ievent)
         {
-            return string.Format("{0} - {1}", ievent.Start.ToString("hh:mmtt"), ievent.End.ToString("hh:mmtt"));
+            return string.Format("{0} - {1}", ievent.Start.Local.ToString("hh:mmtt"), ievent.End.Local.ToString("hh:mmtt"));
         }
     }
 }
