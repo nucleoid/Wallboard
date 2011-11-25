@@ -62,7 +62,7 @@
         $('#jira-projects').wbelement({ url: "@(Url.Action<FeedController>(x => x.JiraProjects()))", delay: 60000 });
         
         $('#news-feeds').cycle({fx: 'scrollLeft', timeout: 6000, after: cycleAfter, url: "@(Url.Action<FeedController>(x => x.Rss()))" });
-        $('#twitter-feeds').cycle({fx: 'scrollLeft', timeout: 6000, after: cycleAfter, url: "@(Url.Action<FeedController>(x => x.Twitter()))" });
+        $('#twitter-feeds').cycle({fx: 'scrollLeft', continuous: 1, speed: 7000, after: cycleAfter, url: "@(Url.Action<FeedController>(x => x.Twitter()))" });
     });
 
     function cycleAfter(currSlideElement, nextSlideElement, options) {
