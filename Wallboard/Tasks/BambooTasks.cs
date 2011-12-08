@@ -18,7 +18,12 @@ namespace Wallboard.Tasks
 
         public BambooTasks()
         {
-            _restClient = new RestClient {BaseUrl = ConfigurationManager.AppSettings["buildServerRestApi"]};
+            _restClient = new RestClient
+            {
+                BaseUrl = ConfigurationManager.AppSettings["buildServerRestApi"],
+                Authenticator = new HttpBasicAuthenticator(ConfigurationManager.AppSettings["jiraUsername"], 
+                    ConfigurationManager.AppSettings["jiraPassword"])
+            };
         }
 
         public Dictionary<string, string> AllProjectKeysAndNames()

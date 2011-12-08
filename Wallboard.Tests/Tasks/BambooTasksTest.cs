@@ -21,10 +21,16 @@ namespace Wallboard.Tests.Tasks
         }
 
         [Test]
-        public void Constructor_Sets_BaseUrl()
+        public void Constructor_Sets_BaseUrl_And_Auth()
         {
+            //Arrange
+            var username = ((_tasks.GetField("_restClient") as IRestClient).Authenticator as HttpBasicAuthenticator).GetField("_username");
+            var password = ((_tasks.GetField("_restClient") as IRestClient).Authenticator as HttpBasicAuthenticator).GetField("_password");
+
             //Assert
             Assert.AreEqual(ConfigurationManager.AppSettings["buildServerRestApi"], (_tasks.GetField("_restClient") as IRestClient).BaseUrl);
+            Assert.AreEqual(ConfigurationManager.AppSettings["jiraUsername"], username);
+            Assert.AreEqual(ConfigurationManager.AppSettings["jiraPassword"], password);
         }
 
         [Test]
